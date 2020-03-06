@@ -21,6 +21,12 @@ slides > slide {
 </style>
 
 
+## Pobieranie danych
+
+https://github.com/STWUR/eRementarz-07-03-2020
+
+<img src="git.png" width="840">
+
 ## RStudio
 
 <img src="rstudio.png" width="840">
@@ -37,11 +43,6 @@ Wczytywanie:
 library(tidyverse)
 ```
 
-## Pobieranie danych
-
-https://github.com/STWUR/eRementarz-07-03-2020
-
-tu tez dojdzie screen
 
 ## Wczytywanie i przypisywanie danych do zmiennej
 
@@ -59,7 +60,7 @@ getwd()
 
 - jeżeli nie masz w tym katalogu pliku z danymi, przekopiuj je do niego lub poniższą funkcją zmień katalog roboczy podając ścieżkę do folderu, w którym znajdują się dane
 ```{r}
-setwd("/home/kasia/RProjects/erementarz")
+setwd("/home/kasia/RProjects/przetwarzanie_danych")
 ```
 
 

@@ -43,15 +43,20 @@ dane %>%
   filter(panel == 'NZ') %>% 
   nrow()
 
-# Znajdźmy projekty o budżecie przekraczającym 2mln zł realizowany przez więcej niż 15 badaczy
+# Znajdźmy projekty o budżecie przekraczającym 2mln zł realizowany przez co najmniej 15 badaczy
 dane %>% 
-  filter(budget > 2000000 & coinvestigators > 15)
+  filter(budget > 2000000 & coinvestigators >= 15)
 
-# Zadanie 
+
+
+# Zadanie 1
 # Znajdź projekty z konkursu SONATA w podpanelu NZ1 lub NZ2, które otrzymały finansowanie
 # w kwocie wyższej niż 1mln zł. Ile jest takich projektów?
-dane %>% 
-  filter(type == 'SONATA' & budget > 1000000 & subpanel %in% c('NZ1', 'NZ8'))
+
+
+
+
+
 
 # Podsumowywanie i sortowanie danych
 # Zliczmy liczby projektów w poszczególnych panelach
@@ -66,25 +71,34 @@ dane %>%
   summarise(srednia = mean(budget)) %>% 
   arrange(srednia)
 
-# Znajdźmy 5 projektów z panelu HS i typu OPUS, które otrzymały najwyższe finansowanie
+# Znajdźmy 5 projektów z panelu HS i typu OPUS, które otrzymały najwyższe finansowanie  
 dane %>% 
   filter(panel == 'HS' & type == 'OPUS') %>% 
   arrange(desc(budget)) %>% 
   head(5)
 
-# Zadanie 
-# Wylicz średnie wysokości finansowania grantów SONATINA w podpanelach ST
+# Znajdźmy projekt o najwyższym budżecie w każdym typie
 dane %>% 
-  filter(panel == 'ST') %>% 
-  group_by(subpanel) %>% 
-  summarise(srednia = mean(budget))
+  group_by(type) %>% 
+  filter(budget == max(budget))
 
-# Zadanie
+
+
+
+# Zadanie 2
+# Wylicz średnie wysokości finansowania grantów SONATINA w podpanelach ST
+
+
+
+
+
+# Zadanie 3
 # Wylicz ile grantów PRELUDIUM o budżecie powyżej 100 tys. zł zostało przyznanych w poszczególnych panelach 
-dane %>% 
-  filter(type == 'PRELUDIUM' & budget > 100000) %>% 
-  group_by(panel) %>% 
-  summarise(liczba = n())
+
+
+
+
+
 
 
 # Modyfikacje i dodawanie nowych zmiennych
@@ -110,16 +124,18 @@ dane4 %>%
   group_by(date) %>% 
   summarise(suma_srodkow = sum(budget))
   
-# Zadanie
+# Zadanie 4
 # Korzystając z dane4 określ liczby wniosków złożonych w poszczególnych edycjach
-dane4 %>% 
-  group_by(date) %>% 
-  summarise(count = n())
 
-# Zadanie 
+
+
+
+
+# Zadanie 5
 # Korzystając z dane4 określ sumę środków przeznaczonych na każdy z paneli 
 # w poszczególnych edycjach. Na który panel przeznaczone są zazwyczaj największe środki?
-dane4 %>% 
-  group_by(date, panel) %>% 
-  summarise(suma = sum(budget)) %>% 
-  arrange(desc(suma))
+
+
+
+
+
